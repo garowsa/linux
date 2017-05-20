@@ -10,6 +10,7 @@ For Debian Install:
 
 Install Proprietary Graphics Drivers
 
+For Euro Truck Simulator: sudo apt-get install libtxc-dxtn-s2tc0
 
 Run in Terminal:
 
