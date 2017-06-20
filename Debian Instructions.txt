@@ -1,0 +1,168 @@
+
+Debian Setup Instructions (post install) 
+By: Matthew_Moore
+
+_____________________________________________________________________________
+Enable Sudo
+
+Enter root using SU command
+
+apt-get install sudo
+
+Navigate to sudoers file /etc/sudoers and add user to list
+
+EXAMPLE:
+
+# Allow members of group sudo to execute any command
+%sudo	ALL=(ALL:ALL) ALL
+matt    ALL=(ALL:ALL) ALL
+
+______________________________________________________________________________
+
+Enable 32bit Architecture:
+(required for installing 32 bit packages such as Steam )
+
+sudo dpkg --add-architecture i386
+
+Refresh package index:
+
+sudo apt-get update
+______________________________________________________________________________
+
+Find fastest mirrors. ( Optional )
+
+install netselect-apt
+
+sudo apt-get install netselect-apt
+
+Run command: 
+
+netselect-apt
+
+A list of mirrors ranked by speed will be places in your home directory
+Copy this list to  /etc/apt/sources.list
+
+Refresh package index:
+
+sudo apt-get update
+______________________________________________________________________________
+
+Enable Contrib and Non-Free packages.
+
+Open Synaptic Package manager, Select settings / repositories
+
+select each item and at the bottom of the Window under "Sections"
+Add contrib non-free. EXAMPLE: 
+
+| main contrib non-free |
+
+Repeat for each item. When finished press OK and then refresh 
+the package index by pressing the Reload button in the top left
+of synaptic package manager. 
+______________________________________________________________________________
+
+Adding Multimedia repository: 
+
+A list of available repositories is available @
+
+http://www.deb-multimedia.org/
+
+To add a Repo in Synaptic open the repository list and 
+select NEW. Select Binary (deb) Under URL add:
+
+http://www.deb-multimedia.org
+
+Under Distribution add your current branch. ( Jessie, Testing, Unstable )
+
+For stock installations enter jessie
+
+Under Sections add | main non-free |
+
+Press OK and Refresh the package Index. 
+
+WARNING: You may recive an error at this point. 
+To correct this you need to add the multimedia PGP Key to the system.
+
+sudo apt-get install deb-multimedia-keyring
+
+Try refreshing the package index again. The error should be corrected. 
+
+NOTE: Synaptic and all other package managers need to be closed before
+installing new Keyring. 
+_____________________________________________________________________________
+
+Install non-free codecs and other media components. ( Optional )
+
+NOTE: These must be installed seperatly to avoid errors / conflicts.
+
+sudo apt-get install libav-tools 
+
+sudo apt-get install flashplugin-nonfree
+
+sudo apt-get install ttf-mscorefonts-installer
+
+sudo apt-get install icedtea-plugin
+
+sudo apt-get install libdvdcss2 
+
+sudo apt-get install gecko-mediaplayer
+
+sudo apt-get install browser-plugin-vlc
+______________________________________________________________________________
+
+Install Linux Firmware and base packages:
+
+sudo apt-get install gdebi gksu firmware-linux firmware-linux-nonfree
+______________________________________________________________________________
+
+Install Microcode for Intel Proscessors. ( Optional ) 
+
+sudo apt-get install intel-microcode
+______________________________________________________________________________
+
+Utility Applications:
+
+sudo apt-get install file-roller rar unrar
+______________________________________________________________________________
+
+Install Nvidia Proprietary Graphics Drivers:
+
+sudo apt-get install nvidia-driver nvidia-settings nvidia-xconfig
+
+sudo nvidia-xconfig
+
+*** REBOOT to enable Nvidia drivers
+______________________________________________________________________________
+
+ENABLE TESTING AND UNSTABLE REPOSITORIES. ( Optional )
+
+ADD The following sources to your /etc/apt/sources/list
+
+deb http://ftp.us.debian.org/debian/ testing main contrib non-free
+
+deb-src http://ftp.us.debian.org/debian/ testing main contrib non-free
+
+deb deb http://ftp.us.debian.org/debian/ unstable main contrib non-free
+
+
+NOTE: If you have added the deb-multimedia repo, Be sure to change the 
+distribution designation to match the desired branch.
+
+EXAMPLE: 
+
+Original: 
+deb http://www.deb-multimedia.org jessie main non-free
+
+Testing:
+deb http://www.deb-multimedia.org testing main non-free
+
+Unstable:
+deb http://www.deb-multimedia.org unstable main non-free
+
+A full list of Available options an be found here:
+
+http://www.deb-multimedia.org/
+_____________________________________________________________________________
+
+
+
