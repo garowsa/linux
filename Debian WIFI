@@ -1,0 +1,28 @@
+Install WiFi Drivers in Debian 9 Stretch Stable:
+
+Add contrib and non-free to sources via synaptic
+sign in as root
+In Terminal:
+apt-get update
+dpkg --add-architecture i386
+apt-get update
+apt-get install linux-headers-$(uname -r|sed 's,[^-]*-[^-]*-,,')
+apt-get install libavcodec-extra
+apt-get install firmware-linux-nonfree
+sudo apt-get install wireless-tools
+sudo apt-get install network-manager-gnome
+
+For Broadcom:
+
+apt-get install broadcom-sta-dkms
+
+For Realtek rtl8812au:
+
+sudo apt-get install linux-headers-generic build-essential git
+git clone https://github.com/scrivy/rtl8812AU_8...
+cd rtl8812AU_8821AU_linux
+make
+sudo make install
+sudo modprobe rtl8812au
+
+Link: https://wiki.debian.org/WiFi
